@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+
+<!--    <app-header v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위 컴포넌트의 메서드 이름"></app-header>-->
+    <app-header v-on:pass="logText"></app-header>
+
+    <div>{{num}}</div>
+    <app-content v-on:add-please="addNumberOk"></app-content>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    var appHeader = {
+        template: '<button v-on:click="publishEvent">{{propsdata}} click me</button>',
+        methods: {
+            publishEvent() {
+                this.$emit('pass');
+            }
+        },
+        props: ['propsdata']
+    }
+
+    var appContent = {
+        template: '<button v-on:click="addNumber">Add 1</button>',
+        props: ['propsdata'],
+        methods: {
+            addNumber() {
+                this.$emit('add-please');
+            }
+        }
+    }
+
+    new Vue({
+        el: '#app',
+        components: {
+            'app-header': appHeader,
+            'app-content': appContent
+        },
+        data: {
+            message: 'hello',
+            num: 10
+        },
+        methods: {
+            logText() {
+                console.log('pass emitted');
+            },
+            addNumberOk() {
+                this.num++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

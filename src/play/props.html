@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <!--    <app-header v-bind:프롭스 속성 이름="상위 컴포넌 데이터 이름"></app-header>-->
+    <app-header v-bind:propsdata1="message" v-bind:propsdata2="age"></app-header>
+    <app-content v-bind:propsdata1="num"></app-content>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    var appHeader = {
+        template: '<h1> {{propsdata1}} {{propsdata2}} {{componentData}} </h1>',
+        props: ['propsdata1', 'propsdata2'],
+        // component 의 data 는 함수형으로 반환
+        data() {
+            return {
+                'componentData': 66
+            }
+        }
+    }
+
+    var appContent = {
+        template: '<div> {{propsdata1}}, content</div>',
+        props: ['propsdata1']
+    }
+
+    new Vue({
+        el: '#app',
+        components: {
+            'app-header': appHeader,
+            'app-content': appContent,
+        },
+        data: {
+            message: 'hi',
+            age: 25,
+            num: 55
+        }
+    })
+</script>
+</body>
+</html>

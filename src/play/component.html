@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <app-header></app-header>
+    <div>{{message}}</div>
+    <app-content></app-content>
+    <app-footer></app-footer>
+</div>
+<hr>
+<div id="app2">
+    <app-header></app-header>
+    <div>{{message}}</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    // 전역 component 등록 START
+    Vue.component('app-header', {
+        template: '<h1>Header</h1>'
+    });
+
+    Vue.component('app-content', {
+        template: '<div>Content</div>'
+    });
+    // 전역 component 등록 END
+
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'hi'
+        },
+        // 지역 component 등록
+        components: {
+            'app-footer': {
+                template: '<p>footer</p>'
+            }
+        },
+    })
+
+    // 인스턴스 여러개 생성 가능
+    new Vue({
+        el: '#app2',
+        data: {
+            message: 'hello'
+        },
+        components: {
+
+        },
+    })
+</script>
+</body>
+</html>
