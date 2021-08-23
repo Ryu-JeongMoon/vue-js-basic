@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+
+    <button v-on:click="logText">Click me</button>
+    <input type="text" v-bind:id="tel0" v-model="phone1" v-on:keyup="passNext">
+    <input type="text" v-bind:id="tel1" v-model="phone2" v-on:keyup="passNext">
+    <input type="text" v-bind:id="tel2" v-model="phone3" v-on:keyup="passTotally">
+    <p v-if="flag">{{phone4}}</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            phone1: '',
+            phone2: '',
+            phone3: '',
+            flag: false,
+            tel0: 'tel0',
+            tel1: 'tel1',
+            tel2: 'tel2'
+        },
+        methods: {
+            logText() {
+                console.log('clicked');
+            },
+
+            // 우왕 굿, 전화번호 입력 시 자동 칸 넘기기~~!~
+            passNext() {
+                if (this.phone1 !== "" && this.phone2 === "" && this.phone1.length == 3)
+                    tel1.focus();
+                if (this.phone2 !== "" && this.phone2.length == 4)
+                    tel2.focus();
+            },
+            passTotally() {
+                if (this.phone3.length == 4)
+                    this.flag = true;
+            }
+        },
+        computed: {
+            phone4() {
+                return this.phone1 + this.phone2 + this.phone3;
+            }
+        }
+    })
+</script>
+</body>
+</html>
