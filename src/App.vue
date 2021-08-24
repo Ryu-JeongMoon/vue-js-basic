@@ -1,23 +1,24 @@
 <template>
-  <div id="app">
-    <Header />
-    <!-- Header 고정, router-view 부분만 component 불러와 사용 -->
-    <div id="content" class="content">
-      <router-view></router-view>
-    </div>
+  <div>
+    <app-header></app-header>
   </div>
 </template>
 
 <script>
-import Header from './components/layout/Header.vue'
+import AppHeader from "@/components/AppHeader";
 
 export default {
-  name: 'App',
+  data: function() {
+    return {
+      str: 'hi'
+    }
+  },
   components: {
-    Header,
+    'app-header': AppHeader
   }
 }
 </script>
 
 <style>
+
 </style>
