@@ -1,12 +1,19 @@
 <template>
   <div>
-    <h1>Hello</h1>
+    <h1>{{propsdata}}</h1>
+    <button v-on:click="sendEvent">Send</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AppHeader"
+  name: "AppHeader",
+  props: ['propsdata'],
+  methods: {
+    sendEvent() {
+      this.$emit('renew');
+    }
+  }
 }
 </script>
 
